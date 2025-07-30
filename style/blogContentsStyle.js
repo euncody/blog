@@ -359,15 +359,36 @@ function styleJupyter(kinds, text, title_info = null) {
     author_date.appendChild(authorDiv);
 
     const authorImg = document.createElement("img");
-    authorImg.src = users[title_info.author]["img"];
-    authorImg.alt = users[title_info.author]["username"];
+    let authorName = "Unknown";
+
+    if (typeof users !== "undefined" && users[title_info.author]) {
+      authorImg.src = users[title_info.author].img;
+      authorImg.alt = users[title_info.author].username;
+      authorName = users[title_info.author].username;
+    } else {
+      authorImg.src = "img/default-profile.png";  // 기본 이미지 (없다면 추가)
+      authorImg.alt = "Unknown";
+    }
+
     authorImg.classList.add(...postauthorImgStyle.split(" "));
     authorDiv.appendChild(authorImg);
 
     const author = document.createElement("div");
     author.classList.add(...postauthorStyle.split(" "));
-    author.textContent = users[title_info.author]["username"];
+    author.textContent = authorName;
     authorDiv.appendChild(author);
+
+
+    // const authorImg = document.createElement("img");
+    // authorImg.src = users[title_info.author]["img"];
+    // authorImg.alt = users[title_info.author]["username"];
+    // authorImg.classList.add(...postauthorImgStyle.split(" "));
+    // authorDiv.appendChild(authorImg);
+
+    // const author = document.createElement("div");
+    // author.classList.add(...postauthorStyle.split(" "));
+    // author.textContent = users[title_info.author]["username"];
+    // authorDiv.appendChild(author);
 
     // date
     const date = document.createElement("div");
