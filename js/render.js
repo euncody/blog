@@ -1,4 +1,3 @@
-  console.log("DEBUG - fileInfo.author:", fileInfo.author, "users:", users);
 function search(keyword, kinds) {
   /*
     트러블슈팅: 실제 데이터가 없을 경우 API 호출을 한 번 실행.
@@ -170,6 +169,7 @@ async function renderMenu() {
 }
 
 function createCardElement(fileInfo, index) {
+    console.log("DEBUG - fileInfo.author:", fileInfo.author, "users:", users);
   const card = document.createElement("div");
   if (index === 0) {
     card.classList.add(...bloglistFirstCardStyle.split(" "));

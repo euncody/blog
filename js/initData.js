@@ -1,4 +1,4 @@
-const users = {};
+window.users = window.users || {};
 
 // GitHub API를 사용하여 폴더 내의 파일 목록 가져오기 (스키마 및 url 참고)
 // https://api.github.com/repos/paullabkorea/github_blog/contents/menu
