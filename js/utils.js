@@ -60,10 +60,14 @@ function extractFileInfo(filename) {
         : `img/thumb${Math.floor(Math.random() * 10) + 1}.webp`,
       // description: matches[5].length > 25 ? matches[5].substring(0, 25) + '...' : matches[5],
       description: matches[5],
-      author: matches[6] ? parseInt(matches[6]) : 0,
+      // author: matches[6] ? parseInt(matches[6]) : 0,
+      author: matches[6],
       fileType: matches[7],
     };
   }
+
+  console.log(extractFileInfo("[20250730]_[Entity 와 Domain]_[markdown]_[]_[Entity와 Domain에 대한 설명]_[euncody].md"));
+
   return null;
 }
 
