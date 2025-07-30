@@ -1,3 +1,4 @@
+  console.log("DEBUG - fileInfo.author:", fileInfo.author, "users:", users);
 function search(keyword, kinds) {
   /*
     트러블슈팅: 실제 데이터가 없을 경우 API 호출을 한 번 실행.
@@ -169,9 +170,6 @@ async function renderMenu() {
 }
 
 function createCardElement(fileInfo, index) {
-  /*
-    정규표현식으로 파싱된 파일정보 fileInfo를 기반으로 blog의 card 생성, index를 받는 이유는 첫번째 카드는 넓이를 크게 차지해야 하기 때문
-    */
   const card = document.createElement("div");
   if (index === 0) {
     card.classList.add(...bloglistFirstCardStyle.split(" "));
@@ -199,9 +197,7 @@ function createCardElement(fileInfo, index) {
   category.textContent = fileInfo.category;
   cardBody.appendChild(category);
 
-  // category 이벤트 생성으로 카테고리 클릭 시 해당 카테고리로 검색
   category.onclick = (event) => {
-    // 클릭했을 때 카드가 클릭되는 것이 아니라 카테고리가 클릭되게 해야함
     event.stopPropagation();
     search(fileInfo.category, "category");
   };
@@ -225,14 +221,21 @@ function createCardElement(fileInfo, index) {
   cardBody.appendChild(authorDiv);
 
   const authorImg = document.createElement("img");
-  authorImg.src = users[fileInfo.author]["img"];
-  authorImg.alt = users[fileInfo.author]["username"];
+  let authorName = "Unknown";
+  if (typeof users !== "undefined" && users[fileInfo.author]) {
+    authorImg.src = users[fileInfo.author].img;
+    authorImg.alt = users[fileInfo.author].username;
+    authorName = users[fileInfo.author].username;
+  } else {
+    authorImg.src = "img/default-profile.png";
+    authorImg.alt = "Unknown";
+  }
   authorImg.classList.add(...bloglistCardAuthorImgStyle.split(" "));
   authorDiv.appendChild(authorImg);
 
   const author = document.createElement("p");
   author.classList.add(...bloglistCardAuthorStyle.split(" "));
-  author.textContent = users[fileInfo.author]["username"];
+  author.textContent = authorName;
   authorDiv.appendChild(author);
 
   const date = document.createElement("p");
@@ -241,7 +244,6 @@ function createCardElement(fileInfo, index) {
   cardBody.appendChild(date);
 
   card.appendChild(cardBody);
-
   return card;
 }
 
