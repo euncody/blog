@@ -163,15 +163,6 @@ function styleMarkdown(kinds, text, title_info = null) {
     authorImg.classList.add(...postauthorImgStyle.split(" "));
     authorDiv.appendChild(authorImg);
 
-    if (typeof users !== "undefined" && users[title_info.author]) {
-        authorImg.src = users[title_info.author].img;
-        authorImg.alt = users[title_info.author].username;
-        author.textContent = users[title_info.author].username;
-    } else {
-        authorImg.src = "img/default-profile.png";
-        authorImg.alt = "Unknown";
-        author.textContent = title_info.author || "Unknown";
-}
 
     const author = document.createElement("div");
     author.classList.add(...postauthorStyle.split(" "));
