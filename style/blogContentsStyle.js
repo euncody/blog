@@ -362,9 +362,13 @@ function styleJupyter(kinds, text, title_info = null) {
     let authorName = "Unknown";
 
     if (typeof users !== "undefined" && users[title_info.author]) {
-      authorImg.src = users[title_info.author].img;
-      authorImg.alt = users[title_info.author].username;
-      authorName = users[title_info.author].username;
+      // authorImg.src = users[title_info.author].img;
+      // authorImg.alt = users[title_info.author].username;
+      // authorName = users[title_info.author].username;
+      authorImg.src = users[title_info.author]["img"];
+      authorImg.alt = users[title_info.author]["username"];
+      author.textContent = users[title_info.author]["username"];
+      
     } else {
       authorImg.src = "img/default-profile.png";  // 기본 이미지 (없다면 추가)
       authorImg.alt = "Unknown";
