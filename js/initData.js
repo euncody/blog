@@ -1,4 +1,9 @@
-window.users = window.users || {};
+window.users = window.users = {
+  euncody: {
+    img: "img/user/profile-euncody.png", // 또는 img/euncody.png 와 같이 본인 이미지가 있다면 해당 경로
+    username: "euncody"
+  }
+};
 
 // GitHub API를 사용하여 폴더 내의 파일 목록 가져오기 (스키마 및 url 참고)
 // https://api.github.com/repos/paullabkorea/github_blog/contents/menu
